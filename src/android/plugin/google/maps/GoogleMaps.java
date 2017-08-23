@@ -481,6 +481,10 @@ public class GoogleMaps extends CordovaPlugin implements View.OnClickListener, O
       if (controls.has("zoom")) {
         options.zoomControlsEnabled(controls.getBoolean("zoom"));
       }
+
+      if (controls.has("mapToolbar")) {
+        options.mapToolbarEnabled(controls.getBoolean("mapToolbar"));
+      }
     }
 
     //gestures

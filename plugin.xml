@@ -196,10 +196,6 @@
             <string>$API_KEY_FOR_IOS</string>
         </config-file>
 
-        <preference name="NSLocationWhenInUseUsageDescription" default="Show your location on the map" />
-        <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
-            <string>$NSLocationWhenInUseUsageDescription</string>
-        </config-file>
 
         <preference name="NSLocationAlwaysUsageDescription" default="Trace your location on the map" />
         <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
@@ -228,6 +224,6 @@
           </array>
         </config-file>
 
-        <dependency id="com.googlemaps.ios" url="https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk" branch="master"  />
+        <dependency id="com.googlemaps.ios" url="https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git" branch="master"  />
     </platform>
 </plugin>

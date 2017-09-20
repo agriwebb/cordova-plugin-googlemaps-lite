@@ -6,9 +6,9 @@
 //
 //
 
-#import "Polyline.h"
+#import "PolylinePlugin.h"
 
-@implementation Polyline
+@implementation PolylinePlugin
 
 -(void)setGoogleMapsViewController:(GoogleMapsViewController *)viewCtrl
 {

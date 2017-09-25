@@ -1,5 +1,5 @@
 //
-//  Polyline.h
+//  PolylinePlugin.h
 //  SimpleMap
 //
 //  Created by masashi on 11/14/13.

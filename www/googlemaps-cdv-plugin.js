@@ -883,7 +883,12 @@ App.prototype.setDiv = function (div) {
     var children = getAllChildren(div);
     ;
     self.set("div", div);
-    args.push(getDivRect(div));
+
+    // AW - Customisation. Ensure that the map is always
+    // rendering full screen (top, left and right) the
+    // bottom of the map need to render above the tab selector
+    args.push(getSelfDivRect(div));
+
     var elements = [];
     var elemId;
     var clickable;
@@ -2359,8 +2364,8 @@ function getPageRect() {
   var doc = document.documentElement;
 
   var pageWidth = window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth,
+    document.documentElement.clientWidth ||
+    document.body.clientWidth,
     pageHeight = window.innerHeight ||
       document.documentElement.clientHeight ||
       document.body.clientHeight;
@@ -2373,6 +2378,28 @@ function getPageRect() {
     'left': pageLeft,
     'top': pageTop
   };
+}
+
+/**
+ * Get the rect information for the main div displaying the map
+ * @param div
+ */
+function getSelfDivRect(div) {
+  // AW - Customisation. Ensure that the map is always
+  // rendering full screen (top, left and right) the
+  // bottom of the map need to render above the tab selector
+  var selfDivRect = getDivRect(div);
+  if (selfDivRect) {
+    if (selfDivRect.top > 0) {
+      selfDivRect.bottom += selfDivRect.top;
+      selfDivRect.top = 0;
+    }
+
+    selfDivRect.left = 0;
+    selfDivRect.right = 0;
+  }
+
+  return selfDivRect;
 }
 
 function getDivRect(div) {
@@ -2408,7 +2435,12 @@ function onMapResize(event) {
     var children = getAllChildren(div);
     var elemId, clickable;
 
-    args.push(getDivRect(div));
+
+    // AW - Customisation. Ensure that the map is always
+    // rendering full screen (top, left and right) the
+    // bottom of the map need to render above the tab selector
+    args.push(getSelfDivRect(div));
+
     for (var i = 0; i < children.length; i++) {
       element = children[i];
       if (element.nodeType != 1) {

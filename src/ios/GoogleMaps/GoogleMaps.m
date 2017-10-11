@@ -23,13 +23,23 @@
 
     //[self versionCheck];
 
-
     self.pluginLayer = [[MyPluginLayer alloc] initWithFrame:self.webView.frame];
     self.pluginLayer.backgroundColor = [UIColor whiteColor];
     self.pluginLayer.webView = self.webView;
     self.pluginLayer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
-    self.pluginScrollView = [[MyPluginScrollView alloc] initWithFrame:self.webView.frame];
+    // START AW - Fix for status bar in wkwebview. Resize the bounds of the map
+    // as we always use the status bar simply add the 20 to the overal height and move up the
+    // view 20 as well.
+    CGRect viewBounds = [self.webView bounds];
+    viewBounds.origin.y -= 20;
+    viewBounds.size.height = viewBounds.size.height + 20;
+    self.pluginScrollView = [[MyPluginScrollView alloc] initWithFrame:viewBounds];
+
+    // ORIGINAL CODE:
+    // self.pluginScrollView = [[MyPluginScrollView alloc] initWithFrame:self.webView.frame];
+    // END AW - Fix
+
     self.pluginScrollView.debugView.webView = self.webView;
     self.pluginScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.webView.scrollView.delegate = self;

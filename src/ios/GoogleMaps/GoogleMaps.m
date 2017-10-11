@@ -32,8 +32,8 @@
     // as we always use the status bar simply add the 20 to the overal height and move up the
     // view 20 as well.
     CGRect viewBounds = [self.webView bounds];
-    viewBounds.origin.y -= 20;
-    viewBounds.size.height = viewBounds.size.height + 20;
+    //viewBounds.origin.y -= 20;
+    //viewBounds.size.height = viewBounds.size.height + 20;
     self.pluginScrollView = [[MyPluginScrollView alloc] initWithFrame:viewBounds];
 
     // ORIGINAL CODE:

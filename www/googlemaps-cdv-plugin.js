@@ -2391,8 +2391,8 @@ function getSelfDivRect(div) {
   var selfDivRect = getDivRect(div);
   if (selfDivRect) {
     if (selfDivRect.top > 0) {
-      selfDivRect.bottom += selfDivRect.top;
-      selfDivRect.top = 0;
+      selfDivRect.height += selfDivRect.top;
+      // selfDivRect.top = 0;
     }
 
     selfDivRect.left = 0;

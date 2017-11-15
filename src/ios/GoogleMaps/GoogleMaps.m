@@ -32,8 +32,10 @@
     // as we always use the status bar simply add the 20 to the overal height and move up the
     // view 20 as well.
     CGRect viewBounds = [self.webView bounds];
-    //viewBounds.origin.y -= 20;
-    //viewBounds.size.height = viewBounds.size.height + 20;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        viewBounds.origin.y -= 20;
+        viewBounds.size.height = viewBounds.size.height + 20;
+    }
     self.pluginScrollView = [[MyPluginScrollView alloc] initWithFrame:viewBounds];
 
     // ORIGINAL CODE:
@@ -140,12 +142,14 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint offset = self.pluginScrollView.contentOffset;
-    offset.x = self.webView.scrollView.contentOffset.x;
-    offset.y = self.webView.scrollView.contentOffset.y;
-    [self.pluginScrollView setContentOffset:offset];
-    [self.pluginLayer setNeedsDisplay];
-    [self.pluginScrollView.debugView setNeedsDisplay];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        CGPoint offset = self.pluginScrollView.contentOffset;
+        offset.x = self.webView.scrollView.contentOffset.x;
+        offset.y = self.webView.scrollView.contentOffset.y;
+        [self.pluginScrollView setContentOffset:offset];
+        [self.pluginLayer setNeedsDisplay];
+        [self.pluginScrollView.debugView setNeedsDisplay];
+    }
 }
 
 -(void)pageDidLoad {

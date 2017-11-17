@@ -7,8 +7,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnShowListener;
 import android.os.AsyncTask;
 
-import com.google.android.gms.common.GooglePlayServicesUtil;
-
 public class AsyncLicenseInfo extends AsyncTask<Void, Void, AlertDialog.Builder> {
   private Activity mActivity;
   private ProgressDialog mProgress;
@@ -19,12 +17,10 @@ public class AsyncLicenseInfo extends AsyncTask<Void, Void, AlertDialog.Builder>
   }
   @Override
   protected AlertDialog.Builder doInBackground(Void... arg0) {
-    String licenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(mActivity);
-    
     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mActivity);
     
     alertDialogBuilder
-      .setMessage(licenseInfo)
+      .setMessage("")
       .setCancelable(false)
       .setPositiveButton("Close", new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog,int id) {

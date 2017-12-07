@@ -34,6 +34,14 @@
     CGRect viewBounds = [self.webView bounds];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         viewBounds.origin.y -= 20;
+
+        // Hack to support iPhone X and its safe space!
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        if (screenSize.height == 812.0f) {
+            viewBounds.origin.y -= 24;
+        }
+
+        // Finally increase the heigh of the bound for the toolbar
         viewBounds.size.height = viewBounds.size.height + 20;
     }
     self.pluginScrollView = [[MyPluginScrollView alloc] initWithFrame:viewBounds];
